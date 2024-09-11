@@ -13,20 +13,28 @@ struct AppTabBarView: View {
     var body: some View {
         VStack{
             
-            Text("IT works!")
-            
             Button {
                 if !spotifyController.appRemote.isConnected {
-                    spotifyController.authorize()
+                    spotifyController.authorize()                
+                    
+                    //spotifyController.connect()
+                    
+                    //spotifyController.appRemoteDidEstablishConnection(spotifyController.appRemote)
                 }
             } label: {
                 Text("Connect")
             }
             
+            Text(spotifyController.currentTrackName ?? "Track Name")
+            
+            
+            
+            
         }.onOpenURL { url in
             spotifyController.setAccessToken(from: url)
         }
         .environmentObject(spotifyController)
+        
     }
 }
 
