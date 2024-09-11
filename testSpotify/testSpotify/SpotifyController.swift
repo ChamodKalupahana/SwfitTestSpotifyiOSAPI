@@ -6,12 +6,13 @@
 //
 
 import Foundation
-import UIKit
 
 import SpotifyiOS
 import SwiftUI
 import Combine
 
+
+// from https://medium.com/@killian.j.sonna/integrating-spotifys-api-with-swiftui-a-step-by-step-guide-f85e92985e31
 
 
 @MainActor
@@ -29,6 +30,7 @@ final class SpotifyController : NSObject, ObservableObject {
     @Published var currentTrackDuration : Int?
     @Published var currentTrackImage : UIImage?
     
+    @Published var isPlaying : Bool?
     
     private var connectCancellable: AnyCancellable? = nil
     private var disconnectCancellable: AnyCancellable? = nil
@@ -131,12 +133,14 @@ extension SpotifyController : SPTAppRemotePlayerStateDelegate {
         self.currentTrackArtist = playerState.track.artist.name
         self.currentTrackDuration = Int(playerState.track.duration / 1000) // spotfy api stores duration in miliseconds
         fetchImage()
+        
+        self.isPlaying = playerState.isPaused
     }
     
     func fetchImage() {
         appRemote.playerAPI?.getPlayerState({ (result, error) in
             
-            guard let error else {
+            guard error == nil else {
                 print("Error getting player state: \(error?.localizedDescription)")
                 return
             }
@@ -144,6 +148,8 @@ extension SpotifyController : SPTAppRemotePlayerStateDelegate {
             if let playerState = result as? SPTAppRemotePlayerState {
                 self.applyImageToClass(playerState: playerState, error: error)
                 }
+            
+
             })
         }
 
@@ -152,8 +158,7 @@ extension SpotifyController : SPTAppRemotePlayerStateDelegate {
         let imageSize = CGSize(width: 300, height: 300)
         self.appRemote.imageAPI?.fetchImage(forItem: playerState.track, with: imageSize, callback: { (image, error) in
             
-            
-            guard let error else {
+            guard error == nil else {
                 print("Error fetching track image: \(error?.localizedDescription)")
                 return
             }
@@ -163,6 +168,10 @@ extension SpotifyController : SPTAppRemotePlayerStateDelegate {
                     self.currentTrackImage = image
                 }
             }
+            
         })
     }
+    
 }
+
+
