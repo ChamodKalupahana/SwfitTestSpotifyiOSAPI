@@ -11,7 +11,20 @@ import Combine
 
 struct ContentView: View {
     var body: some View {
-        AppTabBarView()
+        TabView{
+            AppTabBarView()                
+                .tabItem {
+                Image(systemName: "house.fill")
+                Text("Current Song")
+            }
+            
+            LinkToPlaylist()
+                .tabItem {
+                    Image("square.and.arrow.up.fill")
+                    Text("Link to Playlist")
+                }
+        }
+        
     }
 }
 

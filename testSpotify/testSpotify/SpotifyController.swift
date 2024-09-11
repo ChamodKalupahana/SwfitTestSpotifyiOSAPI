@@ -12,6 +12,13 @@ import SwiftUI
 import Combine
 
 
+struct PlaylistItem : Identifiable {
+    var id : String
+    var title : String
+    var Image : String
+    var numOfSongs : Int
+}
+
 // from https://medium.com/@killian.j.sonna/integrating-spotifys-api-with-swiftui-a-step-by-step-guide-f85e92985e31
 
 
@@ -31,6 +38,7 @@ final class SpotifyController : NSObject, ObservableObject {
     @Published var currentTrackImage : UIImage?
     
     @Published var isPlaying : Bool?
+    @Published var listOfPlaylistItems : [PlaylistItem] = []
     
     private var connectCancellable: AnyCancellable? = nil
     private var disconnectCancellable: AnyCancellable? = nil
@@ -96,6 +104,24 @@ final class SpotifyController : NSObject, ObservableObject {
     func authorize() {
         self.appRemote.authorizeAndPlayURI("")
     }
+  
+    func getPlaylist() {
+        // not sure what flattenContainers is, otherwise don't get my recent or most used playlists
+        self.appRemote.contentAPI?.fetchRecommendedContentItems(forType: "recommended", flattenContainers: true, callback: { result, error in
+            if let playlistList = result as? [SPTAppRemoteContentItem] {
+                
+                for item in playlistList {
+                    let tempItem = PlaylistItem(id: item.identifier, title: item.title ?? "", Image: item.imageIdentifier, numOfSongs: (item.children?.count ?? 0))
+                    self.listOfPlaylistItems.append(tempItem)
+                    print("\(item.imageIdentifier)")
+                }
+                
+            } else if let error = error {
+                print("Error fetching content items: \(error.localizedDescription)")
+            }
+        })
+    }
+
     
 }
 
@@ -171,6 +197,7 @@ extension SpotifyController : SPTAppRemotePlayerStateDelegate {
             
         })
     }
+    
     
 }
 

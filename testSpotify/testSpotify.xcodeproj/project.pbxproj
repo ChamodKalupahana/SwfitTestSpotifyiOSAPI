@@ -14,6 +14,7 @@
 		D968DA9C2C90B5B300F04FF1 /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = D968DA9B2C90B5B300F04FF1 /* SpotifyiOS */; };
 		D968DA9E2C90BB0E00F04FF1 /* SpotifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968DA9D2C90BB0E00F04FF1 /* SpotifyController.swift */; };
 		D968DAA22C90BB6100F04FF1 /* AppTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968DAA12C90BB6100F04FF1 /* AppTabBarView.swift */; };
+		D968DAA52C91D92800F04FF1 /* LinkToPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968DAA42C91D92800F04FF1 /* LinkToPlaylist.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		D968DA9D2C90BB0E00F04FF1 /* SpotifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyController.swift; sourceTree = "<group>"; };
 		D968DAA12C90BB6100F04FF1 /* AppTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarView.swift; sourceTree = "<group>"; };
 		D968DAA32C91B89D00F04FF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D968DAA42C91D92800F04FF1 /* LinkToPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkToPlaylist.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				D968DAA32C91B89D00F04FF1 /* Info.plist */,
 				D968DA8C2C90B57E00F04FF1 /* testSpotifyApp.swift */,
 				D968DA8E2C90B57E00F04FF1 /* ContentView.swift */,
+				D968DAA42C91D92800F04FF1 /* LinkToPlaylist.swift */,
 				D968DAA12C90BB6100F04FF1 /* AppTabBarView.swift */,
 				D968DA9D2C90BB0E00F04FF1 /* SpotifyController.swift */,
 				D968DA902C90B58000F04FF1 /* Assets.xcassets */,
@@ -156,6 +159,7 @@
 				D968DA8F2C90B57E00F04FF1 /* ContentView.swift in Sources */,
 				D968DA9E2C90BB0E00F04FF1 /* SpotifyController.swift in Sources */,
 				D968DAA22C90BB6100F04FF1 /* AppTabBarView.swift in Sources */,
+				D968DAA52C91D92800F04FF1 /* LinkToPlaylist.swift in Sources */,
 				D968DA8D2C90B57E00F04FF1 /* testSpotifyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

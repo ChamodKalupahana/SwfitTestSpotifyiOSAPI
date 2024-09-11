@@ -41,10 +41,6 @@ struct AppTabBarView: View {
         Button {
             if !spotifyController.appRemote.isConnected {
                 spotifyController.authorize()
-                
-                //spotifyController.connect()
-                
-                //spotifyController.appRemoteDidEstablishConnection(spotifyController.appRemote)
             }
         } label: {
             Text("Connect")
