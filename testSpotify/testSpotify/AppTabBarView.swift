@@ -1,0 +1,35 @@
+//
+//  AppTabBarView.swift
+//  testSpotify
+//
+//  Created by ICN on 10/09/2024.
+//
+
+import SwiftUI
+
+struct AppTabBarView: View {
+    
+    @StateObject private var spotifyController = SpotifyController()
+    var body: some View {
+        VStack{
+            
+            Text("IT works!")
+            
+            Button {
+                if !spotifyController.appRemote.isConnected {
+                    spotifyController.authorize()
+                }
+            } label: {
+                Text("Connect")
+            }
+            
+        }.onOpenURL { url in
+            spotifyController.setAccessToken(from: url)
+        }
+        .environmentObject(spotifyController)
+    }
+}
+
+#Preview {
+    AppTabBarView()
+}
